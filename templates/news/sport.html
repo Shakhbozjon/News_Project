@@ -1,0 +1,23 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Sport yangiliklar {% endblock %}ences
+
+{% block content %}
+<div class="fashion_technology_area">
+    <div class="fashion">
+      <div class="single_post_content">
+        <h2><span>Sport</span></h2>
+        <ul class="spost_nav">
+        {% for sport in sport_yangiliklar %}
+          <li>
+            <div class="media wow fadeInDown"> <a href="{{ sport.get_absolute_url }}" class="media-left"> <img alt="" src="{{ sport.image.url }}"> </a>
+              <div class="media-body"> <a href="{{ sport.get_absolute_url }}" class="catg_title">{{ sport.title }}</a> </div>
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+</div>
+{% endblock %}

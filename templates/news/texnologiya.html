@@ -1,0 +1,24 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Mahalliy yangiliklar {% endblock %}
+
+{% block content %}
+<div class="fashion_technology_area">
+    <div class="fashion">
+      <div class="single_post_content">
+        <h2><span>Texnologiya</span></h2>
+    
+        <ul class="spost_nav">
+        {% for texnologiya in texnologiya_yangiliklar %}
+          <li>
+            <div class="media wow fadeInDown"> <a href="{{ texnologiya.get_absolute_url }}" class="media-left"> <img alt="" src="{{ texnologiya.image.url }}"> </a>
+              <div class="media-body"> <a href="{{ texnologiya.get_absolute_url }}" class="catg_title">{{ texnologiya.title }}</a> </div>
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+</div>
+{% endblock %}
