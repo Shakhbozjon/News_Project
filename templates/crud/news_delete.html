@@ -1,0 +1,17 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} {{ news.title }} {% endblock %}
+
+{% block content %}
+    <h2 class="text-center">Yangilikni o'chirish</h2>
+    <form method="post">{% csrf_token %}
+        <h2>
+            {{ news.title }}
+        </h2>
+        <p>{{ news.body }}</p>
+    <button type="submit" class="btn btn-danger ml-2">O'chirish</button>
+    </form>
+
+
+{% endblock %}

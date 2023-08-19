@@ -1,0 +1,20 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}Foydalanuvchi profili{% endblock %}
+
+{% block content %}
+    <h3>Hush kelibsiz, {{ user.username }}</h3>
+    <h3><a href="{% url 'logout' %}" style="color: fuchsia">Logout</a></h3>
+    <h2>Siz haqingizdagi ma'lumotlar</h2>
+    <img src="{{ profile.photo.url }}" width="30%">
+    <h4> Tug'ilgan sana {{ profile.data_of_birth }} </h4>
+    <h4 >Username       {{ user.username }}</h4>
+    <h4 >Email          {{ user.email }}</h4>
+    <h4 >Ism            {{ user.first_name }}</h4>
+    <h4 >Familiya       {{ user.last_name }} </h4>
+
+    <h4><a href="{% url 'password_change' %}" style="color: red">Parolni almashtirish</a></h4>
+    <h4><a href="{% url 'edit_user' %}" style="color: red">Profilni o'zgartirish</a></h4>
+
+{% endblock %}

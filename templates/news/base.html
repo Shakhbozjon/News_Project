@@ -1,7 +1,7 @@
 
-{% load static %}
 
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
 <title>{% block title %}{% endblock %}</title>
@@ -30,13 +30,26 @@
         <div class="header_top">
           <div class="header_top_left">
             <ul class="top_nav">
-              <li><a href="{% url 'home_page' %}">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="{% url 'contact_page' %}">Contact</a></li>
+              <li><a href="{% url 'home_page' %}">Bosh sahifa</a></li>
+              <li><a href="#">Biz haqimizda</a></li>
+              <li><a href="{% url 'contact_page' %}">Biz bilan aloqa</a></li>
+
+              {% if request.user.is_authenticated and request.user.is_superuser %}
+              <li><a href="{% url 'admin_page' %}">Admin Sahifasi</a></li>
+              {% endif %}
+
             </ul>
           </div>
           <div class="header_top_right">
-            <p>{% now "js F Y H:i" %}</p>
+
+          {% if request.user.is_authenticated %}
+            <p><a href="{% url 'logout' %}" style="color: red">Logout</a></p>
+            <p><a href="{% url 'user_profile' %}" style="color: yellow">Profile</a></p>
+          {% else %}
+            <p><a href="{% url 'login' %}" style="color: white">Login</a></p>
+          {% endif %}
+
+            <p>{% now "jS F Y H:i" %}</p>
           </div>
         </div>
       </div>
@@ -61,6 +74,11 @@
           <li><a href="{% url 'xorij_news_page' %}">Xorij</a></li>
           <li><a href="{% url 'texno_news_page' %}">Texnologiya</a></li>
           <li><a href="{% url 'contact_page' %}">Biz bilan aloqa</a></li>
+          <li>
+            <form method="get" action="{% url 'search_result' %}">
+              <input type="search" name="q" placeholder="Qidiruv..." class="form-control" style="margin: 8px">
+            </form>
+          </li>
         </ul>
       </div>
     </nav>
